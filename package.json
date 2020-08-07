@@ -1,0 +1,55 @@
+{
+  "name": "graphql-sls-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "apollo-server-express": "^2.4.8",
+    "apollo-server-lambda": "^2.4.8",
+    "axios": "^0.18.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "global": "^4.3.2",
+    "graphql": "^14.1.1",
+    "graphql-type-json": "^0.2.1",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.4.16",
+    "serverless-http": "^1.9.1",
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "graphql-playground-middleware-express": "^1.7.12",
+    "jest": "^24.1.0",
+    "serverless-offline": "^4.9.1",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "webpack": "webpack",
+    "dev": "eslint . --fix && sls offline start --skipCacheInvalidation",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ace1-intermediacao-de-negocios-ltda/graphql-serverless-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ace1-intermediacao-de-negocios-ltda/graphql-serverless-api/issues"
+  },
+  "homepage": "https://github.com/ace1-intermediacao-de-negocios-ltda/graphql-serverless-api#readme"
+}
