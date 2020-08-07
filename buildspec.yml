@@ -24,7 +24,7 @@ phases:
 
       - echo making serverless deploy
       - echo using environment $NODE_ENV
-      - sls deploy --stage $NODE_ENV | tee deploy.out
+      - sls deploy --stage $NODE_ENV --skipResources | tee deploy.out
   post_build:
     commands:
       - echo finished deploy
