@@ -80,8 +80,3 @@ The default port is 3000
 * [Yarn](https://yarnpkg.com) - Dependency Management
 * [ESLint](https://eslint.org/) - Source analyze Tool. [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) 
 * [JSDOC](http://usejsdoc.org) - JavaScript Documentation
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ace1-intermediacao-de-negocios-ltda/ace-1-app/tags). 
-
