@@ -1,6 +1,6 @@
-# ACE1 serverless Graphql API
+# serverless Graphql API
 
-Guideline and examples for ACE1 serverless Graphql , encouraging consistency, maintainability, and best practices across applications.   
+Guideline and examples for serverless Graphql , encouraging consistency, maintainability, and best practices across applications.   
 
 ## Prerequisites
 
@@ -22,19 +22,19 @@ yarn global add serverless
 First clone the project: 
 
 ```
-git clone git@github.com:ace1-intermediacao-de-negocios-ltda/graphql-serverless-api.git
+git clone git@github.com:festival-digital/feira-sls-graphql-api.git
 ```
 
 Or via https: 
 
 ```
-https://github.com/ace1-intermediacao-de-negocios-ltda/graphql-serverless-api.git
+git clone https://github.com/festival-digital/feira-sls-graphql-api.git
 ```
 
 Go to the project root folder:
 
 ```
-cd graphql-serverless-api.git
+cd feira-sls-graphql-api
 ```
 
 In root directory install the dependecies:
@@ -52,7 +52,13 @@ sudo service mongod start
 Start the server locally:
 
 ```
-sls offline start
+yarn dev
+```
+
+custom host and port start the server locally:
+
+```
+yarn dev --host 192.168.0.1 --port 3000
 ```
 
 The default port is 3000
