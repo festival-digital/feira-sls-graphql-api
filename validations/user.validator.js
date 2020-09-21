@@ -1,6 +1,7 @@
 import { regexpValidators, validateBirthDate, validateCPF } from '../utils/validator.util';
 
 /**
+  * 
   * validateUser - Função que valida se o usuário tem os campos necessários e se eles são válidos
   *
   * @function validateUser
@@ -12,9 +13,10 @@ import { regexpValidators, validateBirthDate, validateCPF } from '../utils/valid
   * @param {string} user.birth_date it contains the birth date
   * @param {string} user.ida it contains the ida id
   */
-export const validateUser = ({
-  cpf, email, first_name, last_name, birth_date, ida,
-}) => {
+export const validateUser = (user) => {
+  const {
+    cpf, email, first_name, last_name, birth_date, ida,
+  } = user;
   if (!cpf) throw new TypeError('validation/empty/cpf');
   if (!validateCPF(cpf)) throw new TypeError('validation/invalid/cpf');
 
