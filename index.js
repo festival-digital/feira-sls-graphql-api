@@ -15,6 +15,7 @@ const server = new ApolloServer(
     context: async ({ event, context }) => {
       const envVariables = event.stageVariables || {
         mongoUrl: process.env.mongoUrl,
+        SYMPLA_KEY: process.env.SYMPLA_KEY,
       };
 
       const connConfig = { conn };
@@ -29,6 +30,10 @@ const server = new ApolloServer(
         context,
         // connection
         users: conn.model('users'),
+        activities: conn.model('activities'),
+        events: conn.model('events'),
+        tickets: conn.model('tickets'),
+        SYMPLA_KEY: envVariables.SYMPLA_KEY,
       });
     },
   },

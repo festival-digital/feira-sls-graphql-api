@@ -1,19 +1,41 @@
+import { UserInputError } from 'apollo-server-lambda';
+import Sympla from '../services/sympla.service';
+import { validateUser } from '../validations/user.validator';
+
 /**
-* create - static function that create one user in database.
+* create - Função que cria um usuário no banco de dados
 *
 * @function create
 * @param {object} parent it contains the result returned from the resolver on the parent type
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const create = (parent, args, { users }) => users.create(args.user).lean()
-  .then(resp => ({ ...resp, id: resp._id }))
-  .catch((err) => {
-    throw new Error(err);
-  });
+const create = async (parent, args, { users }) => {
+  let user;
+  try {
+    validateUser(args.user);
+  } catch (err) {
+    const [, error, attribute] = err.message.split('/');
+    throw new UserInputError(`Validation error, ${error} value in ${attribute} key`, {
+      invalidArgs: [attribute],
+    });
+  }
+  try {
+    user = await users.create(args.user);
+    return ({ ...user.toJSON(), id: user._id });
+  } catch (err) {
+    const duplicatedKeys = Object.keys(err.keyPattern);
+    if (duplicatedKeys) {
+      throw new UserInputError(`Duplicated in [${duplicatedKeys.toString()}] keys`, {
+        invalidArgs: duplicatedKeys,
+      });
+    }
+    throw err;
+  }
+};
 
 /**
-* findOne - function that find one user in database, generally using an mongo _id attribute.
+* findOne - Função que acha um usuário por id, e-mail ou cpf.
 *
 * @function findOne
 * @param {object} parent it contains the result returned from the resolver on the parent type
@@ -22,8 +44,9 @@ const create = (parent, args, { users }) => users.create(args.user).lean()
 */
 const findOne = (parent, args, { users }) => users.findOne({
   $or: [
-    { _id: args.id },
-    { email: args.email },
+    { _id: args.user.id },
+    { email: args.user.email },
+    { cpf: args.user.cpf },
   ],
 }).lean()
   .then(resp => ({ ...resp, id: resp._id }))
@@ -33,7 +56,7 @@ const findOne = (parent, args, { users }) => users.findOne({
 
 
 /**
- - function that find all users in database, returning all users or some users that
+ findAll - Função que acha retorna usuários com as informações indicadas
 * have some match with indicated attribute.
 *
 * @function findAll
@@ -48,7 +71,7 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
   });
 
 /**
-* update - function that update one user in database, generally using an mongo _id attribute.
+* update - Função que atualiza o usuário
 *
 * @function update
 * @param {object} parent it contains the result returned from the resolver on the parent type
@@ -56,7 +79,6 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
 * @param {object} context it contains all mongo collections
 */
 const update = (parent, args, { users }) => {
-  console.log('args:', args);
   return users.findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
     .then(resp => resp)
     .catch((err) => {
@@ -64,8 +86,51 @@ const update = (parent, args, { users }) => {
     });
 };
 
+/**
+* addTicket - Função que adiciona um ticket à um usuário, fazendo a consulta no sympla e
+*   adicionando ele a nossa base de dados
+*
+* @function addTicket
+* @param {object} parent it contains the result returned from the resolver on the parent type
+* @param {object} args it contains filter, sort, skip and limit to build the query
+* @param {object} context it contains all mongo collections
+*/
+const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
+  const { code, user_id, sympla_event_id } = args;
+  let sTicket;
+  let ticket;
+  const sympla = new Sympla(SYMPLA_KEY);
+  try {
+    sTicket = await sympla.getTicket({ event_id: sympla_event_id, ticket_number: code });
+  } catch (err) {
+    const [type, error, attribute] = err.message.split('/');
+    throw new UserInputError(`${type} error, ${error} to get ${attribute}`, {
+      invalidArgs: [attribute],
+    });
+  }
+  try {
+    ticket = await tickets.create({
+      ...sympla.mapTicket(sTicket),
+      user: user_id,
+    });
+  } catch (err) {
+    console.log('err:', [err]);
+    const duplicatedKeys = Object.keys(err.keyPattern);
+    if (duplicatedKeys) {
+      throw new UserInputError(`Duplicated in [${duplicatedKeys.toString()}] keys`, {
+        invalidArgs: duplicatedKeys,
+      });
+    }
+    throw err;
+  }
+  await users.findOneAndUpdate({ _id: user_id }, { $push: { tickets: ticket._id } });
+
+  return ({ ...ticket.toJSON(), id: ticket._id });
+};
+
 export default {
   create,
+  addTicket,
   findOne,
   findAll,
   update,

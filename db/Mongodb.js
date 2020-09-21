@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 import users from './schemas/users.model';
+import activities from './schemas/activities.model';
+import events from './schemas/events.model';
+import tickets from './schemas/tickets.model';
 
 mongoose.Promise = global.Promise;
 
@@ -16,6 +19,9 @@ export default async ({ conn, mongoUrl = 'mongodb://localhost/feira-digital' }) 
       });
 
       newConnection.model('users', users);
+      newConnection.model('activities', activities);
+      newConnection.model('events', events);
+      newConnection.model('tickets', tickets);
       return newConnection;
     }
     console.log('=> using existing database connection');

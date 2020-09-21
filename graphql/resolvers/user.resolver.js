@@ -1,12 +1,13 @@
-import UserController from '../../controllers/user.controller';
+import Controller from '../../controllers/user.controller';
 
 export default {
   queries: {
-    user: UserController.findOne,
-    allUsers: UserController.findAll,
+    oneUser: Controller.findOne,
+    allUsers: Controller.findAll,
   },
   mutations: {
-    createUser: UserController.create,
-    updateUser: UserController.update,
+    createUser: Controller.create,
+    updateUser: Controller.update,
+    addTicketIntoUser: Controller.addTicket,
   },
 };

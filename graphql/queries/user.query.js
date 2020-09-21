@@ -1,5 +1,5 @@
 export default `
-  user( 
+  oneUser( 
     id: String
     email: String
   ): User
