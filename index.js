@@ -18,7 +18,7 @@ const server = new ApolloServer(
         SYMPLA_KEY: process.env.SYMPLA_KEY,
       };
 
-      conn = await MongoDB({ mongoUrl: envVariables.MONGO_URL });
+      conn = await MongoDB({ conn, mongoUrl: envVariables.MONGO_URL });
 
       return ({
         headers: event.headers,

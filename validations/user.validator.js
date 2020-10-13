@@ -1,7 +1,7 @@
 import { regexpValidators, validateBirthDate, validateCPF } from '../utils/validator.util';
 
 /**
-  * 
+  *
   * validateUser - Função que valida se o usuário tem os campos necessários e se eles são válidos
   *
   * @function validateUser
