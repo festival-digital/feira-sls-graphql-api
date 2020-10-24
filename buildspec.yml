@@ -10,7 +10,7 @@ phases:
       - npm install --only=dev
 
       - echo installing serverless
-      - npm install -g serverless
+      - npm install -g serverless --unsafe-perm=true
       
       - echo installing webpack
       - npm install -g webpack
