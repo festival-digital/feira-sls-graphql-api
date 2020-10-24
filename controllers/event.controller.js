@@ -6,8 +6,8 @@
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const create = (parent, args, { events }) => events.create(args.event).lean()
-  .then(resp => ({ ...resp, id: resp._id }))
+const create = (parent, args, { events }) => events.create(args.event)
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
@@ -24,7 +24,7 @@ const findOne = (parent, args, { events }) => events.findOne({
   $or: [
     { _id: args.id },
   ],
-}).lean()
+})
   .then(resp => ({ ...resp, id: resp._id }))
   .catch((err) => {
     throw new Error(err);
@@ -39,8 +39,8 @@ const findOne = (parent, args, { events }) => events.findOne({
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findAll = (parent, args, { events }) => events.find(args.event).lean()
-  .then(resp => resp.map(usr => ({ ...usr, id: resp._id })))
+const findAll = (parent, args, { events }) => events.find(args.event)
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
@@ -53,14 +53,12 @@ const findAll = (parent, args, { events }) => events.find(args.event).lean()
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const update = (parent, args, { events }) => {
-  console.log('args:', args);
-  return events.findOneAndUpdate({ _id: args.event.id }, args.event, { new: true })
-    .then(resp => resp)
-    .catch((err) => {
-      throw new Error(err);
-    });
-};
+const update = (parent, args, { events }) => events
+  .findOneAndUpdate({ _id: args.event.id }, args.event, { new: true })
+  .then(resp => resp)
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 export default {
   create,

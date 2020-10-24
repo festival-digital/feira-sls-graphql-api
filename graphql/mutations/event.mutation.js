@@ -1,9 +1,9 @@
 export default `
   createEvent(
-    Event: EventInput
+    event: EventInput
   ): Event
 
   updateEvent(
-    Event: EventInput
+    event: EventInput
   ): Event
 `;

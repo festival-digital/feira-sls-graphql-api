@@ -20,9 +20,9 @@ const create = async (parent, args, { users }) => {
       invalidArgs: [attribute],
     });
   }
+
   try {
     user = await users.create(args.user);
-    return ({ ...user.toJSON(), id: user._id });
   } catch (err) {
     const duplicatedKeys = Object.keys(err.keyPattern);
     if (duplicatedKeys) {
@@ -30,8 +30,10 @@ const create = async (parent, args, { users }) => {
         invalidArgs: duplicatedKeys,
       });
     }
-    throw err;
+    throw new Error(err);
   }
+
+  return user;
 };
 
 /**
@@ -44,12 +46,14 @@ const create = async (parent, args, { users }) => {
 */
 const findOne = (parent, args, { users }) => users.findOne({
   $or: [
-    { _id: args.user.id },
-    { email: args.user.email },
-    { cpf: args.user.cpf },
+    { _id: args.id },
+    { ida: args.ida },
+    { email: args.email },
+    { cpf: args.cpf },
   ],
-}).lean()
-  .then(resp => ({ ...resp, id: resp._id }))
+})
+  .populate('tickets')
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
@@ -78,13 +82,12 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const update = (parent, args, { users }) => {
-  return users.findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
-    .then(resp => resp)
-    .catch((err) => {
-      throw new Error(err);
-    });
-};
+const update = (parent, args, { users }) => users
+  .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
+  .then(resp => resp)
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 /**
 * addTicket - Função que adiciona um ticket à um usuário, fazendo a consulta no sympla e
@@ -114,7 +117,6 @@ const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
       user: user_id,
     });
   } catch (err) {
-    console.log('err:', [err]);
     const duplicatedKeys = Object.keys(err.keyPattern);
     if (duplicatedKeys) {
       throw new UserInputError(`Duplicated in [${duplicatedKeys.toString()}] keys`, {

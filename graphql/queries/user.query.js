@@ -1,6 +1,7 @@
 export default `
   oneUser( 
     id: String
+    ida: String
     email: String
   ): User
 

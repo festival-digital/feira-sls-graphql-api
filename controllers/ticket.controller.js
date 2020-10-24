@@ -53,14 +53,12 @@ const findAll = (parent, args, { tickets }) => tickets.find(args.ticket).lean()
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const update = (parent, args, { tickets }) => {
-  console.log('args:', args);
-  return tickets.findOneAndUpdate({ _id: args.ticket.id }, args.ticket, { new: true })
-    .then(resp => resp)
-    .catch((err) => {
-      throw new Error(err);
-    });
-};
+const update = (parent, args, { tickets }) => tickets
+  .findOneAndUpdate({ _id: args.ticket.id }, args.ticket, { new: true })
+  .then(resp => resp)
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 export default {
   create,
