@@ -40,7 +40,8 @@
     "webpack": "webpack",
     "dev": "eslint . --fix && sls offline start --skipCacheInvalidation",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "windows": "eslint . --fix && sls offline start --skipCacheInvalidation --port 3003"
   },
   "repository": {
     "type": "git",
