@@ -1,5 +1,5 @@
 export default `
-type User {
+  type User {
     id: ID
     ida: String
     first_name: String

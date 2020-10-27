@@ -2,6 +2,7 @@ import userType from './user.type';
 import activityType from './activity.type';
 import eventType from './event.type';
 import ticketType from './ticket.type';
+import faqQuestionType from './faq-question.type';
 
 export default `
   scalar JSON
@@ -10,4 +11,5 @@ export default `
   ${activityType}
   ${eventType}
   ${ticketType}
+  ${faqQuestionType}
 `;

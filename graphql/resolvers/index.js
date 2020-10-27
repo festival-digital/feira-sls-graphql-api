@@ -2,6 +2,7 @@ import user from './user.resolver';
 import activity from './activity.resolver';
 import event from './event.resolver';
 import ticket from './ticket.resolver';
+import FAQQuestion from './faq-question.resolver';
 
 export default {
   Query: {
@@ -15,5 +16,6 @@ export default {
     ...activity.mutations,
     ...event.mutations,
     ...ticket.mutations,
+    ...FAQQuestion.mutations,
   },
 };
