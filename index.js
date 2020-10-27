@@ -33,6 +33,7 @@ const server = new ApolloServer(
         activities: conn.model('activities'),
         events: conn.model('events'),
         tickets: conn.model('tickets'),
+        FAQQuestions: conn.model('faq-questions'),
         SYMPLA_KEY: envVariables.SYMPLA_KEY,
       });
     },

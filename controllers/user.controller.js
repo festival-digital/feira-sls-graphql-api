@@ -125,6 +125,7 @@ const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
     }
     throw err;
   }
+
   await users.findOneAndUpdate({ _id: user_id }, { $push: { tickets: ticket._id } });
 
   return ({ ...ticket.toJSON(), id: ticket._id });
