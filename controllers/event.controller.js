@@ -23,12 +23,9 @@ const create = (parent, args, { events }) => events.create(args.event)
 const findOne = (parent, args, { events }) => events.findOne({
   $or: [
     { _id: args.id },
+    { title_key: args.title_key },
   ],
-})
-  .then(resp => ({ ...resp, id: resp._id }))
-  .catch((err) => {
-    throw new Error(err);
-  });
+});
 
 
 /**

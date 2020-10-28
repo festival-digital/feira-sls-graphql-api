@@ -8,7 +8,6 @@
 */
 const create = async (parent, args, { shows, activities }) => {
   let show;
-  console.log('aquiiii');
   try {
     show = await shows.create(args.show);
   } catch (err) {
