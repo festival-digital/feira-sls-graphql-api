@@ -3,6 +3,8 @@ import activity from './activity.resolver';
 import event from './event.resolver';
 import ticket from './ticket.resolver';
 import FAQQuestion from './faq-question.resolver';
+import show from './show.resolver';
+import vote from './vote.resolver';
 
 export default {
   Query: {
@@ -17,5 +19,7 @@ export default {
     ...event.mutations,
     ...ticket.mutations,
     ...FAQQuestion.mutations,
+    ...vote.mutations,
+    ...show.mutations,
   },
 };

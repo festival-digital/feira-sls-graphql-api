@@ -2,6 +2,7 @@ export default `
   type Activity {
     id: ID
     title: String
+    title_key: String
     description: String
     tags: [String]
     end_date: String
@@ -13,13 +14,14 @@ export default `
     subscribeds: [User]
     type: String
     streaming_url: String
-    shows_uri: [String]
+    shows: [Show]
     event: Event
   }
 
   input ActivityInput {
     id: ID
     title: String
+    title_key: String
     description: String
     tags: [String]
     end_date: String
@@ -30,7 +32,6 @@ export default `
     subscription_url: String
     type: String
     streaming_url: String
-    shows_uri: [String]
     event: String
   }
 `;
