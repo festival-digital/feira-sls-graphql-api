@@ -25,11 +25,10 @@ const findOne = (parent, args, { events }) => events.findOne({
     { _id: args.id },
   ],
 })
-  // .populate({ path: 'tickets', model: 'tickets' })
-  // .populate({ path: 'activities', model: 'activities' })
+  .populate({ path: 'tickets', model: 'tickets' })
+  .populate({ path: 'activities', model: 'activities' })
   .then((resp) => {
-    console.log('args find one ', args, resp);
-    return { ...resp, id: resp._id };
+    return resp;
   })
   .catch((err) => {
     throw new Error(err);
