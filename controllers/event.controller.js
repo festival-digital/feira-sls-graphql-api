@@ -25,7 +25,12 @@ const findOne = (parent, args, { events }) => events.findOne({
     { _id: args.id },
   ],
 })
-  .then(resp => ({ ...resp, id: resp._id }))
+  // .populate({ path: 'tickets', model: 'tickets' })
+  // .populate({ path: 'activities', model: 'activities' })
+  .then((resp) => {
+    console.log('args find one ', args, resp);
+    return { ...resp, id: resp._id };
+  })
   .catch((err) => {
     throw new Error(err);
   });
@@ -40,7 +45,12 @@ const findOne = (parent, args, { events }) => events.findOne({
 * @param {object} context it contains all mongo collections
 */
 const findAll = (parent, args, { events }) => events.find(args.event)
-  .then(resp => resp)
+  .populate({ path: 'tickets', model: 'tickets' })
+  .populate({ path: 'activities', model: 'activities' })
+  .then((resp) => {
+    console.log('events ', resp);
+    return resp;
+  })
   .catch((err) => {
     throw new Error(err);
   });
