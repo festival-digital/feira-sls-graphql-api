@@ -3,6 +3,8 @@ import activityType from './activity.type';
 import eventType from './event.type';
 import ticketType from './ticket.type';
 import faqQuestionType from './faq-question.type';
+import show from './show.type';
+import vote from './vote.type';
 
 export default `
   scalar JSON
@@ -12,4 +14,6 @@ export default `
   ${eventType}
   ${ticketType}
   ${faqQuestionType}
+  ${show}
+  ${vote}
 `;

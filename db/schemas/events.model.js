@@ -5,6 +5,7 @@ const { ObjectId } = Schema.Types;
 
 const eventsModel = new Schema({
   name: { type: String, required: true },
+  title_key: { type: String, required: true },
   sympla_id: { type: String, required: true, unique: true },
   tickets: [{ type: ObjectId, ref: 'Tickets' }],
   description: { type: String },

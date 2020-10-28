@@ -4,6 +4,8 @@ import activities from './schemas/activities.model';
 import events from './schemas/events.model';
 import tickets from './schemas/tickets.model';
 import FAQQuestions from './schemas/faq-questions.model';
+import shows from './schemas/shows.model';
+import votes from './schemas/votes.model';
 
 mongoose.Promise = global.Promise;
 
@@ -25,6 +27,8 @@ export default async ({ conn, mongoUrl = 'mongodb://localhost/feira-digital' }) 
       newConnection.model('events', events);
       newConnection.model('tickets', tickets);
       newConnection.model('faq-questions', FAQQuestions);
+      newConnection.model('shows', shows);
+      newConnection.model('votes', votes);
       return newConnection;
     }
 

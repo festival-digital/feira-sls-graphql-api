@@ -5,6 +5,7 @@ const { ObjectId } = Schema.Types;
 
 const activitiesModel = new Schema({
   title: { type: String },
+  title_key: { type: String },
   description: { type: String },
   tags: [{ type: String }],
   end_date: { type: Date },
@@ -16,7 +17,7 @@ const activitiesModel = new Schema({
   subscribeds: [{ type: ObjectId, ref: 'users' }],
   type: { type: String },
   streaming_url: { type: String },
-  shows_uri: [{ type: String }],
+  shows: [{ type: ObjectId, ref: 'shows' }],
   event: { type: ObjectId, ref: 'Events' },
 }, {
   usePushEach: true,

@@ -2,6 +2,7 @@ export default `
   type Event {
     id: ID
     name: String
+    title_key: String
     sympla_id: String
     tickets: Ticket
     description: String
@@ -16,12 +17,12 @@ export default `
     status: String
     productor: User
     activities: [Activity]
-
   }
 
   input EventInput {
     id: ID
     name: String
+    title_key: String
     sympla_id: String
     description: String
     image_url: String

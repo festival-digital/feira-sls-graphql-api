@@ -6,8 +6,8 @@
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const create = (parent, args, { activities }) => activities.create(args.activity).lean()
-  .then(resp => ({ ...resp, id: resp._id }))
+const create = (parent, args, { activities }) => activities.create(args.activity)
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
@@ -39,8 +39,8 @@ const findOne = (parent, args, { activities }) => activities.findOne({
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findAll = (parent, args, { activities }) => activities.find(args.activity).lean()
-  .then(resp => resp.map(usr => ({ ...usr, id: resp._id })))
+const findAll = (parent, args, { activities }) => activities.find(args.activity)
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
