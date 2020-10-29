@@ -24,9 +24,14 @@ const findOne = (parent, args, { events }) => events.findOne({
   $or: [
     { _id: args.id },
     { title_key: args.title_key },
-  ],
-});
-
+  ]
+})
+  .populate({ path: 'tickets', model: 'tickets' })
+  .populate({ path: 'activities', model: 'activities' })
+  .then(resp => resp)
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 /**
  findAll - Função que retorna todos os eventos com os dados indicados
@@ -37,7 +42,12 @@ const findOne = (parent, args, { events }) => events.findOne({
 * @param {object} context it contains all mongo collections
 */
 const findAll = (parent, args, { events }) => events.find(args.event)
-  .then(resp => resp)
+  .populate({ path: 'tickets', model: 'tickets' })
+  .populate({ path: 'activities', model: 'activities' })
+  .then((resp) => {
+    console.log('events ', resp);
+    return resp;
+  })
   .catch((err) => {
     throw new Error(err);
   });

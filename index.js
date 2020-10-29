@@ -20,7 +20,7 @@ const server = new ApolloServer(
 
       conn = await MongoDB({
         conn,
-        mongoUrl: envVariables.MONGO_URL ? `mongodb+${envVariables.MONGO_URL}` : null,
+        mongoUrl: envVariables.MONGO_URL ? `mongodb+${envVariables.MONGO_URL}` : 'mongodb://localhost/feira-digital',
       });
 
       return ({

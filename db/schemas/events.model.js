@@ -17,7 +17,7 @@ const eventsModel = new Schema({
   end_date: { type: Date },
   start_date: { type: Date },
   is_free: { type: Boolean, default: false },
-  status: { type: String, defualt: 'ACTIVE' },
+  status: { type: String, default: 'ACTIVE' },
   productor: { type: ObjectId, ref: 'Users' },
   activities: [{ type: ObjectId, ref: 'Activities' }],
 }, {
