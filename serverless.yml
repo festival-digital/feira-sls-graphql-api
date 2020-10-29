@@ -75,7 +75,8 @@ functions:
         method: POST
         path: /
         cors:
-          origin: '*'
+          origins: 
+            - 'https://oasi.vc'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
