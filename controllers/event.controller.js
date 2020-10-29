@@ -27,9 +27,7 @@ const findOne = (parent, args, { events }) => events.findOne({
 })
   .populate({ path: 'tickets', model: 'tickets' })
   .populate({ path: 'activities', model: 'activities' })
-  .then((resp) => {
-    return resp;
-  })
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
