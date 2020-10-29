@@ -23,7 +23,8 @@ const create = (parent, args, { events }) => events.create(args.event)
 const findOne = (parent, args, { events }) => events.findOne({
   $or: [
     { _id: args.id },
-  ],
+    { title_key: args.title_key },
+  ]
 })
   .populate({ path: 'tickets', model: 'tickets' })
   .populate({ path: 'activities', model: 'activities' })
@@ -31,7 +32,6 @@ const findOne = (parent, args, { events }) => events.findOne({
   .catch((err) => {
     throw new Error(err);
   });
-
 
 /**
  findAll - Função que retorna todos os eventos com os dados indicados
