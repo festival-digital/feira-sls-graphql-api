@@ -76,7 +76,7 @@ functions:
         path: /
         cors:
           origins:
-            - https://oasi.vc
+            - '*'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
