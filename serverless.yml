@@ -75,8 +75,7 @@ functions:
         method: POST
         path: /
         cors:
-          origins:
-            - '*'
+          origin: '*'
           headers:
             - Content-Type
             - Access-Control-Allow-Origin
