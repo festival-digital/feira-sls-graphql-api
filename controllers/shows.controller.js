@@ -10,6 +10,7 @@ const create = async (parent, args, { shows, activities }) => {
   let show;
   try {
     show = await shows.create(args.show);
+    console.log('create -> show', show);
   } catch (err) {
     throw err;
   }
