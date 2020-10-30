@@ -10,7 +10,6 @@ const create = async (parent, args, { shows, activities }) => {
   let show;
   try {
     show = await shows.create(args.show);
-    console.log('create -> show', show);
   } catch (err) {
     throw err;
   }
@@ -18,7 +17,7 @@ const create = async (parent, args, { shows, activities }) => {
   try {
     await activities.findOneAndUpdate(
       { _id: show.activity },
-      { $pull: { shows: show._id } },
+      { $push: { shows: show._id } },
       { new: true },
     );
   } catch (err) {

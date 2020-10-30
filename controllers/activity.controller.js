@@ -23,9 +23,20 @@ const create = (parent, args, { activities }) => activities.create(args.activity
 const findOne = (parent, args, { activities }) => activities.findOne({
   $or: [
     { _id: args.id },
+    { title_key: args.title_key },
   ],
-}).lean()
-  .then(resp => ({ ...resp, id: resp._id }))
+})
+  .populate({
+    path: 'shows',
+    populate: [{
+      path: 'votes',
+      populate: ['user'],
+    }],
+  })
+  .then((resp) => {
+    console.log(resp.shows[0].votes[0].user);
+    return resp;
+  })
   .catch((err) => {
     throw new Error(err);
   });

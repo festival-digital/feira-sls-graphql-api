@@ -1,7 +1,11 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-lambda';
+import { Schema } from 'mongoose';
 import dotenv from 'dotenv';
 import schema from './graphql/schema';
 import MongoDB from './db/Mongodb';
+
+const { ObjectId } = Schema.Types;
+ObjectId.prototype.valueOf = () => this.toString();
 
 dotenv.config();
 let conn = null;

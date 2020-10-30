@@ -8,7 +8,7 @@ const showsModel = new Schema({
   url: { type: String },
   activity: { type: ObjectId, ref: 'activities' },
   type: { type: String, default: 'video' },
-  votes: { type: ObjectId, ref: 'votes' },
+  votes: [{ type: ObjectId, ref: 'votes' }],
 }, {
   usePushEach: true,
   timestamps: { updatedAt: 'updated_at', createdAt: 'created_at' },

@@ -15,10 +15,15 @@ const vote = async (parent, args, { shows, votes }) => {
     throw err;
   }
 
+  votePromise = await votePromise
+    .populate('show')
+    .populate('user')
+    .execPopulate();
+
   try {
     await shows.findOneAndUpdate(
-      { _id: vote.show },
-      { $pull: { votes: votePromise._id } },
+      { _id: votePromise.show._id },
+      { $push: { votes: votePromise._id } },
       { new: true },
     );
   } catch (err) {
