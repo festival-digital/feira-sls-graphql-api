@@ -117,7 +117,6 @@ const addTicket = async (parent, args, {
     });
   }
 
-  const event = await events.findOne({ sympla_id: sympla_event_id });
   try {
     ticket = await tickets.create({
       ...sympla.mapTicket(sTicket),
