@@ -130,6 +130,7 @@ const addTicket = async (parent, args, {
         invalidArgs: duplicatedKeys,
       });
     }
+
     throw err;
   }
 
