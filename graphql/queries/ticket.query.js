@@ -4,6 +4,6 @@ export default `
   ): Ticket
 
   allTickets( 
-    Ticket: TicketInput
+    ticket: TicketInput
   ): [Ticket]
 `;

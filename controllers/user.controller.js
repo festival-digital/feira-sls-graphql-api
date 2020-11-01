@@ -99,7 +99,9 @@ const update = (parent, args, { users }) => users
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
+const addTicket = async (parent, args, {
+  users, tickets, events, SYMPLA_KEY,
+}) => {
   const { code, user_id, sympla_event_id } = args;
   let sTicket;
   let ticket;
@@ -114,10 +116,12 @@ const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
     });
   }
 
+  const event = await events.findOne({ sympla_id: sympla_event_id });
   try {
     ticket = await tickets.create({
       ...sympla.mapTicket(sTicket),
       user: user_id,
+      event: event._id,
     });
   } catch (err) {
     const duplicatedKeys = Object.keys(err.keyPattern);

@@ -5,8 +5,8 @@ const { ObjectId } = Schema.Types;
 
 const ticketsModel = new Schema({
   code: { type: String, required: true, unique: true },
-  event: { type: ObjectId, ref: 'Event' },
-  user: { type: ObjectId, ref: 'Users' },
+  event: { type: ObjectId, ref: 'events' },
+  user: { type: ObjectId, ref: 'users' },
   sympla_id: { type: String },
   sympla_order_id: { type: String },
   sympla_ticket_number: { type: String },

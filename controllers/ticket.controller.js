@@ -39,8 +39,10 @@ const findOne = (parent, args, { tickets }) => tickets.findOne({
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findAll = (parent, args, { tickets }) => tickets.find(args.ticket).lean()
-  .then(resp => resp.map(usr => ({ ...usr, id: resp._id })))
+const findAll = (parent, args, { tickets }) => tickets.find(args.ticket)
+  .populate('event')
+  .populate('user')
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });
