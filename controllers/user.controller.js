@@ -84,6 +84,7 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
 */
 const update = (parent, args, { users }) => users
   .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
+  .populate('tickets')
   .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
@@ -103,6 +104,7 @@ const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
   let sTicket;
   let ticket;
   const sympla = new Sympla(SYMPLA_KEY);
+
   try {
     sTicket = await sympla.getTicket({ event_id: sympla_event_id, ticket_number: code });
   } catch (err) {
@@ -111,6 +113,7 @@ const addTicket = async (parent, args, { users, tickets, SYMPLA_KEY }) => {
       invalidArgs: [attribute],
     });
   }
+
   try {
     ticket = await tickets.create({
       ...sympla.mapTicket(sTicket),
