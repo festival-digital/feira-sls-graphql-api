@@ -82,13 +82,12 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const update = (parent, args, { users }) => users
-  .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
-  .populate('tickets')
-  .then(resp => resp)
-  .catch((err) => {
-    throw new Error(err);
-  });
+const update = async (parent, args, { users }) => {
+  const user = await users
+    .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true }).populate('tickets');
+
+  return user;
+};
 
 /**
 * addTicket - Função que adiciona um ticket à um usuário, fazendo a consulta no sympla e
@@ -100,14 +99,16 @@ const update = (parent, args, { users }) => users
 * @param {object} context it contains all mongo collections
 */
 const addTicket = async (parent, args, {
-  users, tickets, events, SYMPLA_KEY,
+  events, users, tickets, SYMPLA_KEY,
 }) => {
   const { code, user_id, sympla_event_id } = args;
   let sTicket;
   let ticket;
+  let event;
   const sympla = new Sympla(SYMPLA_KEY);
 
   try {
+    event = await events.findOne({ sympla_id: sympla_event_id }, { _id: true });
     sTicket = await sympla.getTicket({ event_id: sympla_event_id, ticket_number: code });
   } catch (err) {
     const [type, error, attribute] = err.message.split('/');
@@ -116,7 +117,6 @@ const addTicket = async (parent, args, {
     });
   }
 
-  const event = await events.findOne({ sympla_id: sympla_event_id });
   try {
     ticket = await tickets.create({
       ...sympla.mapTicket(sTicket),
