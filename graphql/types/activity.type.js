@@ -14,6 +14,7 @@ export default `
     subscribeds: [User]
     type: String
     streaming_url: String
+    image_url: String
     shows: [Show]
     event: Event
   }
@@ -32,6 +33,7 @@ export default `
     subscription_url: String
     type: String
     streaming_url: String
+    image_url: String
     event: String
   }
 `;

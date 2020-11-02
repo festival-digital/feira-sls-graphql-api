@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5f988bf7b4baa4658c322fa2"
+  },
+  "ida": "",
+  "first_name": "",
+  "last_name": "",
+  "display_name": "",
+  "birth_date": "",
+  "tickets": [],
+  "my_events": [],
+  "city": "",
+  "state": "",
+  "old": 0,
+  "other_gender": "",
+  "gender": "",
+  "skin_color": "",
+  "other_skin_color": "",
+  "sexual_orientation": "",
+  "other_sexual_orientation": "",
+  "has_disability":  false ,
+  "disability": "",
+  "is_deleted": false ,
+  "status": "IN_REGISTER"
+}]

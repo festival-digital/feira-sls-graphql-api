@@ -17,6 +17,7 @@ const activitiesModel = new Schema({
   subscribeds: [{ type: ObjectId, ref: 'users' }],
   type: { type: String },
   streaming_url: { type: String },
+  image_url: { type: String },
   shows: [{ type: ObjectId, ref: 'shows' }],
   event: { type: ObjectId, ref: 'Events' },
 }, {

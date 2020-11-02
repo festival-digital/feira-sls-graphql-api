@@ -1,0 +1,177 @@
+[
+
+  {
+  "_id": {
+    "$oid": "5f987a8bd1298b6768b78001"
+  },
+  "title": "Videos sensação 2020",
+  "title_key": "videos-sensacao-2020",
+  "description": "descrição da atividade 01",
+  "tags": ["música"],
+  "end_date": "2020-11-13T14:00:00.000Z",
+  "start_date": "2020-11-13T10:00:00.000Z",
+  "subscription_start_date": "2020-11-11T10:00:00.000Z",
+  "subscription_end_date": "2020-11-13T14:00:00.000Z",
+  "has_subscription": true,
+  "subscription_url": true,
+  "subscribeds": [
+    {
+      "$oid": "5f988bf7b4baa4658c322fa2"
+    }
+
+  ],
+  "type": "FREE" ,
+  "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+  "shows_uri": "https://www.google.com.br",
+  "image_url": "https://kanto.legiaodosherois.com.br/w760-h398-gnw-cfill-q80/wp-content/uploads/2018/11/legiao_g1Lb4TuhmjQHZzGvfIESo7RXDr5aFtCJWVPeqx2l6d.jpg.jpeg",
+  "event":{
+    "$oid": "5f987a8bd1298b6768b78112"
+  }
+  },
+
+  {
+    "_id": {
+      "$oid": "5f987a8bd1298b6768b78011"
+    },
+    "title": "atividade 11",
+    "title_key": "atividade-11",
+    "description": "descrição da atividade 11",
+    "tags": ["meditação"],
+    "end_date": "2020-11-03T11:00:00.000Z",
+    "start_date": "2020-11-02T11:00:00.000Z",
+    "subscription_start_date": "2020-11-02T11:00:00.000Z",
+    "subscription_end_date": "2020-11-03T11:00:00.000Z",
+    "has_subscription": true,
+    "subscription_url": true,
+    "subscribeds": [
+      {
+        "$oid": "5f988bf7b4baa4658c322fa2"
+      }
+  
+    ],
+    "type": "FREE" ,
+    "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+    "shows_uri": "https://www.google.com.br",
+    "image_url": "https://super.abril.com.br/wp-content/uploads/2018/07/cowboybebop.jpg?quality=70&strip=info&w=1024",
+    "event":{
+      "$oid": "5f987a8bd1298b6768b78112"
+    }
+    },
+
+    {
+      "_id": {
+        "$oid": "5f987a8bd1298b6768b78012"
+      },
+      "title": "atividade 12",
+      "title_key": "atividade-12",
+      "description": "descrição da atividade 12",
+      "tags": ["música"],
+      "end_date": "2020-11-03T11:00:00.000Z",
+      "start_date": "2020-11-02T11:00:00.000Z",
+      "subscription_start_date": "2020-11-02T11:00:00.000Z",
+      "subscription_end_date": "2020-11-02T11:00:00.000Z",
+      "has_subscription": true,
+      "subscription_url": true,
+      "subscribeds": [
+        {
+          "$oid": "5f988bf7b4baa4658c322fa2"
+        }
+    
+      ],
+      "type": "PAYABLE" ,
+      "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+      "shows_uri": "https://www.google.com.br",
+      "image_url": "https://cdn.suwalls.com/wallpapers/anime/inuyasha-29373-1920x1200.jpg",
+      "event":{
+        "$oid": "5f987a8bd1298b6768b78112"
+      }
+      },
+
+
+      {
+        "_id": {
+          "$oid": "5f987a8bd1298b6768b78013"
+        },
+        "title": "atividade 13",
+        "title_key": "atividade-13",
+        "description": "descrição da atividade 13",
+        "tags": ["jogos"],
+        "end_date": "2020-11-03T11:00:00.000Z",
+        "start_date": "2020-11-02T11:00:00.000Z",
+        "subscription_start_date": "2020-11-02T11:00:00.000Z",
+        "subscription_end_date": "2020-11-03T11:00:00.000Z",
+        "has_subscription": true,
+        "subscription_url": true,
+        "subscribeds": [
+          {
+            "$oid": "5f988bf7b4baa4658c322fa2"
+          }
+      
+        ],
+        "type": "FREE" ,
+        "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+        "shows_uri": "https://www.google.com.br",
+        "image_url": "https://uploads.jovemnerd.com.br/wp-content/uploads/2017/12/v-fullmetal-alchemist-760x428.jpg",
+        "event":{
+          "$oid": "5f987a8bd1298b6768b78112"
+        }
+        },
+
+  {
+    "_id": {
+      "$oid": "5f987a8bd1298b6768b78002"
+    },
+    "title": "Atividade 14",
+    "title_key": "atividade-14",
+    "description": "descrição da atividade 14",
+    "tags": ["dança"],
+    "end_date": "2020-11-13T14:00:00.000Z",
+    "start_date": "2020-11-11T10:00:00.000Z",
+    "subscription_start_date": "2020-11-11T10:00:00.000Z",
+    "subscription_end_date": "2020-11-13T14:00:00.000Z",
+    "has_subscription": true,
+    "subscription_url": true,
+    "subscribeds": [
+      {
+        "$oid": "5f988bf7b4baa4658c322fa2"
+      }
+  
+    ],
+    "type": "FREE" ,
+    "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+    "shows_uri": "https://www.google.com.br",
+    "image_url": "https://4.bp.blogspot.com/-vny5eAVlQ-U/UNy5__RiftI/AAAAAAAAA-s/unqfxLf-qLQ/s1600/hyouka1.jpg",
+    "event":{
+      "$oid": "5f987a92d1298b6768b78113"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5f987a8bd1298b6768b78003"
+    },
+    "title": "Atividade 03",
+    "title_key": "atividade-03  ",
+    "description": "descrição da atividade 03",
+    "tags": ["música"],
+    "end_date": "2020-11-13T14:00:00.000Z",
+    "start_date": "2020-11-11T10:00:00.000Z",
+    "subscription_start_date": "2020-11-11T10:00:00.000Z",
+    "subscription_end_date": "2020-11-13T14:00:00.000Z",
+    "has_subscription": true,
+    "subscription_url": true,
+    "subscribeds": [
+      {
+        "$oid": "5f988bf7b4baa4658c322fa2"
+      }
+  
+    ],
+    "type": "FREE" ,
+    "streaming_url": "https://www.youtube.com/embed/kXtsZdAeGjk",
+    "shows_uri": "https://www.google.com.br",
+    "image_url": "https://i.pinimg.com/originals/31/4b/fc/314bfc8137319e3834926fa6909e5591.jpg",
+    "event":{
+      "$oid": "5f987a92d1398b6768b78114"
+    }
+  }
+
+]

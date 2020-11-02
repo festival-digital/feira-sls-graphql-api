@@ -15,6 +15,8 @@ export default `
     other_gender: String
     skin_color: String
     other_skin_color: String
+    sexual_orientation: String,
+    other_sexual_orientation: String,
     has_disability: Boolean
     disability: String
     status: String
@@ -34,6 +36,8 @@ export default `
     other_gender: String
     skin_color: String
     other_skin_color: String
+    sexual_orientation: String,
+    other_sexual_orientation: String,
     has_disability: Boolean
     disability: String
     status: String

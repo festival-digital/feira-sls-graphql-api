@@ -24,7 +24,7 @@ const findOne = (parent, args, { events }) => events.findOne({
   $or: [
     { _id: args.id },
     { title_key: args.title_key },
-  ]
+  ],
 })
   .populate({ path: 'tickets', model: 'tickets' })
   .populate({ path: 'activities', model: 'activities' })
