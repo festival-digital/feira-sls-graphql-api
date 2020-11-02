@@ -44,23 +44,20 @@ const create = async (parent, args, { users }) => {
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findOne = (parent, args, { users }) => users.findOne({
-  $or: [
-    { _id: args.id },
-    { ida: args.ida },
-    { email: args.email },
-    { cpf: args.cpf },
-  ],
-})
-  .populate({
-    path: 'tickets',
-    populate: [{ path: 'event' }],
-  })
-  .then(resp => resp)
-  .catch((err) => {
-    throw new Error(err);
-  });
+const findOne = (parent, args, { users }) => {
+  const $or = [];
 
+  if (args.id) $or.push({ _id: args.id });
+  if (args.ida) $or.push({ ida: args.ida });
+  if (args.email) $or.push({ email: args.email });
+  if (args.cpf) $or.push({ cpf: args.cpf });
+
+  return users.findOne({ $or })
+    .populate({
+      path: 'tickets',
+      populate: [{ path: 'event' }],
+    });
+};
 
 /**
  findAll - Função que acha retorna usuários com as informações indicadas
