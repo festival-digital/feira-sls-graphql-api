@@ -19,7 +19,8 @@ const eventsModel = new Schema({
   is_free: { type: Boolean, default: false },
   status: { type: String, defualt: 'ACTIVE' },
   productor: { type: ObjectId, ref: 'Users' },
-  activities: [{ type: ObjectId, ref: 'Activities' }],
+  ticket_url: { type: String },
+  activities: [{ type: ObjectId, ref: 'activities' }],
 }, {
   usePushEach: true,
   timestamps: { updatedAt: 'updated_at', createdAt: 'created_at' },

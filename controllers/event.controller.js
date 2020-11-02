@@ -20,12 +20,15 @@ const create = (parent, args, { events }) => events.create(args.event)
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findOne = (parent, args, { events }) => events.findOne({
-  $or: [
-    { _id: args.id },
-    { title_key: args.title_key },
-  ],
-});
+const findOne = async (parent, args, { events }) => {
+  const event = await events.findOne({
+    $or: [
+      { _id: args.id },
+      { title_key: args.title_key },
+    ],
+  }).populate('activities');
+  return event;
+};
 
 
 /**
@@ -36,11 +39,10 @@ const findOne = (parent, args, { events }) => events.findOne({
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const findAll = (parent, args, { events }) => events.find(args.event)
-  .then(resp => resp)
-  .catch((err) => {
-    throw new Error(err);
-  });
+const findAll = async (parent, args, { events }) => {
+  const eventsResponse = await events.find(args.event).populate('activities');
+  return eventsResponse;
+};
 
 /**
 * update - Função que atualiza um evento

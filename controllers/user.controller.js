@@ -52,7 +52,10 @@ const findOne = (parent, args, { users }) => users.findOne({
     { cpf: args.cpf },
   ],
 })
-  .populate('tickets')
+  .populate({
+    path: 'tickets',
+    populate: [{ path: 'event' }],
+  })
   .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
@@ -84,7 +87,11 @@ const findAll = (parent, args, { users }) => users.find(args.user).lean()
 */
 const update = async (parent, args, { users }) => {
   const user = await users
-    .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true }).populate('tickets');
+    .findOneAndUpdate({ _id: args.user.id }, args.user, { new: true })
+    .populate({
+      path: 'tickets',
+      populate: [{ path: 'event' }],
+    });
 
   return user;
 };

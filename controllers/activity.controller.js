@@ -6,11 +6,20 @@
 * @param {object} args it contains filter, sort, skip and limit to build the query
 * @param {object} context it contains all mongo collections
 */
-const create = (parent, args, { activities }) => activities.create(args.activity)
-  .then(resp => resp)
-  .catch((err) => {
-    throw new Error(err);
-  });
+const create = async (parent, args, { activities, events }) => {
+  const activity = await activities.create(args.activity)
+    .then(resp => resp)
+    .catch((err) => {
+      throw new Error(err);
+    });
+
+  await events.findOneAndUpdate(
+    { _id: args.activity.event },
+    { $push: { activities: activity._id } },
+  );
+
+  return activity;
+};
 
 /**
 * findOne - Função que encontra uma atividade por id
@@ -33,10 +42,7 @@ const findOne = (parent, args, { activities }) => activities.findOne({
       populate: ['user'],
     }],
   })
-  .then((resp) => {
-    console.log(resp.shows[0].votes[0].user);
-    return resp;
-  })
+  .then(resp => resp)
   .catch((err) => {
     throw new Error(err);
   });

@@ -9,6 +9,7 @@ export default `
     image_url: String
     cover_url: String
     site_url: String
+    ticket_url: String
     tags: [String]
     sympla_url: String
     start_date: String
@@ -27,6 +28,7 @@ export default `
     description: String
     image_url: String
     cover_url: String
+    ticket_url: String
     site_url: String
     tags: [String]
     sympla_url: String
