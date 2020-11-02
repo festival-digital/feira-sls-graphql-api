@@ -9,7 +9,7 @@ const usersModel = new Schema({
   display_name: { type: String },
   birth_date: { type: Date },
   tickets: [{ type: ObjectId, ref: 'tickets' }],
-  my_events: [{ type: ObjectId, ref: 'Events' }],
+  my_events: [{ type: ObjectId, ref: 'events' }],
   city: { type: String },
   state: { type: String },
   old: { type: Number },

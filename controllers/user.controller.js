@@ -1,6 +1,5 @@
 import { UserInputError } from 'apollo-server-lambda';
 import Sympla from '../services/sympla.service';
-import { validateUser } from '../validations/user.validator';
 
 /**
 * create - Função que cria um usuário no banco de dados
@@ -12,18 +11,11 @@ import { validateUser } from '../validations/user.validator';
 */
 const create = async (parent, args, { users }) => {
   let user;
-  try {
-    validateUser(args.user);
-  } catch (err) {
-    const [, error, attribute] = err.message.split('/');
-    throw new UserInputError(`Validation error, ${error} value in ${attribute} key`, {
-      invalidArgs: [attribute],
-    });
-  }
 
   try {
     user = await users.create(args.user);
   } catch (err) {
+    console.log([err]);
     const duplicatedKeys = Object.keys(err.keyPattern);
     if (duplicatedKeys) {
       throw new UserInputError(`Duplicated in [${duplicatedKeys.toString()}] keys`, {
