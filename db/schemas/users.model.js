@@ -15,6 +15,8 @@ const usersModel = new Schema({
   old: { type: Number },
   other_gender: { type: String },
   gender: { type: String },
+  other_sexual_orientation: { type: String },
+  sexual_orientation: { type: String },
   skin_color: { type: String },
   other_skin_color: { type: String },
   has_disability: { type: Boolean, default: false },
