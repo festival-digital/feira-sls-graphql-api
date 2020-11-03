@@ -7,6 +7,7 @@ const activitiesModel = new Schema({
   title: { type: String },
   title_key: { type: String },
   description: { type: String },
+  image_url: { type: String },
   tags: [{ type: String }],
   end_date: { type: Date },
   start_date: { type: Date },

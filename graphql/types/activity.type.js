@@ -3,6 +3,7 @@ export default `
     id: ID
     title: String
     title_key: String
+    image_url: String
     description: String
     tags: [String]
     end_date: String
@@ -22,6 +23,7 @@ export default `
     id: ID
     title: String
     title_key: String
+    image_url: String
     description: String
     tags: [String]
     end_date: String
